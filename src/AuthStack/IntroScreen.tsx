@@ -111,12 +111,12 @@ export default IntroScreen;
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: '#1E90FF', // Middle blue
+    backgroundColor: '#1E90FF', 
   },
   skySection: { 
     flex: 2, 
     justifyContent: 'flex-end',
-    backgroundColor: 'transparent', // Already blue from safeContainer
+    backgroundColor: 'transparent', 
   },
   pokemonContainer: { 
     height: 320, 
@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: 'center',
     borderTopRightRadius: 150,
+    borderTopLeftRadius: 150,
     marginTop: -60,
     zIndex: 3,
     elevation: 3,

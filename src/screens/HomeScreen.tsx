@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,56 +8,79 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = () => {
+  const [character, setCharacter] = useState<'boy' | 'girl' | null>(null);
+
+  useEffect(() => {
+    const loadCharacter = async () => {
+      const savedCharacter = await AsyncStorage.getItem('USER_CHARACTER');
+      if (savedCharacter === 'boy' || savedCharacter === 'girl') {
+        setCharacter(savedCharacter);
+      }
+    };
+
+    loadCharacter();
+  }, []);
+
+  const getCharacterImage = () => {
+    if (character === 'boy') {
+      return require('../assets/Pokemon/boy.png');
+    }
+    if (character === 'girl') {
+      return require('../assets/Pokemon/girl.png');
+    }
+    return null;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.title}>Pokédex</Text>
-          <Text style={styles.subtitle}>Gotta Catch ’Em All! ⚡</Text>
+          <Text style={styles.subtitle}>Gotta Catch ’Em All!</Text>
         </View>
 
-        {/* Hero Image */}
-        <Image
-          source={{
-            uri: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-          }}
-          style={styles.heroImage}
-        />
+        {/* Trainer Image */}
+        {character && (
+          <Image
+            source={getCharacterImage()!}
+            style={styles.heroImage}
+          />
+        )}
 
         {/* Cards */}
         <View style={styles.cardContainer}>
           <TouchableOpacity style={styles.card}>
-            <Text style={styles.cardTitle}>🔍 Explore Pokémon</Text>
+            <Text style={styles.cardTitle}> Explore Pokémon</Text>
             <Text style={styles.cardText}>
               Discover cute and powerful Pokémon
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
-            <Text style={styles.cardTitle}>❤️ Favorites</Text>
+            <Text style={styles.cardTitle}> Favorites</Text>
             <Text style={styles.cardText}>
               Save the Pokémon you love
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
-            <Text style={styles.cardTitle}>⚔️ Battles</Text>
+            <Text style={styles.cardTitle}> Battles</Text>
             <Text style={styles.cardText}>
               Learn Pokémon powers & moves
             </Text>
           </TouchableOpacity>
         </View>
-
       </ScrollView>
     </SafeAreaView>
   );
 };
 
 export default HomeScreen;
+
 
 const styles = StyleSheet.create({
   container: {
@@ -79,8 +102,8 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   heroImage: {
-    width: 160,
-    height: 160,
+    width: 100,
+    height: 230,
     alignSelf: "center",
     marginVertical: 20,
   },
@@ -88,11 +111,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   card: {
-    backgroundColor: "#FFF",
+    backgroundColor: "#ffffffe3",
     borderRadius: 20,
     padding: 20,
     marginBottom: 15,
     elevation: 5,
+    height: 130,
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardTitle: {
     fontSize: 20,
