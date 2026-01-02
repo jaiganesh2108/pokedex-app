@@ -1,17 +1,8 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  Keyboard
-} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Keyboard, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import LottieView from 'lottie-react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
 
 const SignupScreen = ({ navigation }: any) => {
   return (
@@ -25,6 +16,11 @@ const SignupScreen = ({ navigation }: any) => {
                 autoPlay
                 loop
                 style={styles.lottie}
+            />
+            <Image
+                source={require('../assets/lottie/bush.png')}
+                style={styles.bush}
+                resizeMode="contain"
             />
             <Text style={styles.title}>Into the Pokéverse</Text>
           </View>
@@ -58,10 +54,12 @@ const SignupScreen = ({ navigation }: any) => {
       />
 
       <TouchableOpacity
-        style={styles.button}
-        onPress={() => {}}
-      >
-        <Text style={styles.buttonText}>Sign Up</Text>
+          style={styles.button}
+          onPress={() =>
+            navigation.replace('Character', { name: 'Trainer' })
+          }
+        >
+          <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.goBack('Login')}>
@@ -101,6 +99,13 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
   },
+  bush: { 
+    position: 'absolute', 
+    bottom: 45, 
+    width: 280, 
+    height: 120, 
+    zIndex: 2 
+},
 
   title: {
     fontSize: 25,

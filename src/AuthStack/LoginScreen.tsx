@@ -101,7 +101,7 @@ const LoginScreen = ({ navigation }: any) => {
 
             <TouchableOpacity
               style={styles.button}
-              onPress={() => {}}
+              onPress={() => {navigation.navigate('Home')}}
               activeOpacity={0.85}
             >
               <Text style={styles.buttonText}>Login</Text>
@@ -138,12 +138,56 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     paddingTop: 80 
 },
-  lottie: { width: 300, height: 300, position: 'relative' },
-  bush: { position: 'absolute', bottom: 10, width: 280, height: 120, zIndex: 2 },
-  title: { fontSize: 25, fontWeight: '500', marginTop: 8, color: '#111111' },
-  bottomSection: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 30, paddingBottom: 30 },
-  input: { backgroundColor: '#fff', borderWidth: 1, borderColor: '#ddd', paddingVertical: 14, paddingHorizontal: 16, borderRadius: 10, fontSize: 15, marginBottom: 16 },
-  button: { backgroundColor: '#000', paddingVertical: 16, borderRadius: 10, marginTop: 6 },
-  buttonText: { color: '#fff', textAlign: 'center', fontWeight: '700', fontSize: 16 },
-  linkText: { marginTop: 22, textAlign: 'center', color: '#1c1b1bff', fontSize: 14 },
+  lottie: { 
+    width: 300, 
+    height: 300, 
+    position: 'relative' 
+},
+  bush: { 
+    position: 'absolute', 
+    bottom: 20, 
+    width: 280, 
+    height: 120, 
+    zIndex: 2 
+},
+  title: { 
+    fontSize: 25,
+    fontWeight: '500', 
+    marginTop: 8, 
+    color: '#111111' 
+},
+  bottomSection: { 
+    flexGrow: 1, 
+    justifyContent: 'center', 
+    paddingHorizontal: 30, 
+    paddingBottom: 30 
+},
+  input: { 
+    backgroundColor: '#fff', 
+    borderWidth: 1, 
+    borderColor: '#ddd', 
+    paddingVertical: 14, 
+    paddingHorizontal: 16, 
+    borderRadius: 10, 
+    fontSize: 15, 
+    marginBottom: 16 
+},
+  button: { 
+    backgroundColor: '#000', 
+    paddingVertical: 16, 
+    borderRadius: 10, 
+    marginTop: 6 
+},
+  buttonText: { 
+    color: '#fff', 
+    textAlign: 'center', 
+    fontWeight: '700', 
+    fontSize: 16 
+},
+  linkText: { 
+    marginTop: 22, 
+    textAlign: 'center', 
+    color: '#1c1b1bff', 
+    fontSize: 14 
+},
 });
