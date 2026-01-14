@@ -3,14 +3,20 @@ import {
   View,
   Text,
   ScrollView,
-  StyleSheet,
+  StyleSheet,   
   Image,
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
+
+type RootStackParamList = {
+  Explore: undefined;
+};
 
 const HomeScreen = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [character, setCharacter] = useState<'boy' | 'girl' | null>(null);
 
   useEffect(() => {
@@ -53,7 +59,12 @@ const HomeScreen = () => {
 
         {/* Cards */}
         <View style={styles.cardContainer}>
-          <TouchableOpacity style={styles.card}>
+          <TouchableOpacity style={styles.card}
+          onPress={() => navigation.navigate('Explore')}>
+            <Image
+              source={require('../assets/Pokemon/pokedex.png')}
+              style={{ width: 50, height: 50, marginBottom: 10 }}
+            />
             <Text style={styles.cardTitle}> Explore Pokémon</Text>
             <Text style={styles.cardText}>
               Discover cute and powerful Pokémon
@@ -61,6 +72,10 @@ const HomeScreen = () => {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
+            <Image
+              source={require('../assets/Pokemon/jigglypuff.png')}
+              style={{ width: 50, height: 50, marginBottom: 10 }}
+            />
             <Text style={styles.cardTitle}> Favorites</Text>
             <Text style={styles.cardText}>
               Save the Pokémon you love
@@ -68,6 +83,10 @@ const HomeScreen = () => {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
+            <Image
+              source={require('../assets/Pokemon/insignia.png')}
+              style={{ width: 50, height: 50, marginBottom: 10 }}
+            />
             <Text style={styles.cardTitle}> Battles</Text>
             <Text style={styles.cardText}>
               Learn Pokémon powers & moves
@@ -111,7 +130,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   card: {
-    backgroundColor: "#ffffffe3",
+    backgroundColor: "#fff",
     borderRadius: 20,
     padding: 20,
     marginBottom: 15,
